@@ -92,8 +92,32 @@
         <!-- o v-bind, nos dois exemplos, pode ser substituído pelos : -->
 
         <fieldset>
-            <legend></legend>
+            <legend>V-model</legend>
+            <label for="input-firstName">Primeiro Nome: </label>
+            <input id="input-firstName" type="text" v-model="firstName">
+            <br>
+            <label for="textarea-html">HTML: </label>
+            <textarea id="textarea-html" v-model="htmlContent"></textarea>
+            <br>
+            <input type="checkbox" id="checkbox" v-model="checked">
+            <label for="checkbox">{{checked}}</label>
+            <br>
+
+            <input type="radio" id="one" value="Um" v-model="selectedOption">
+            <label for="one">Um</label>
+            <input type="radio" id="two" value="Dois" v-model="selectedOption">
+            <label for="two">Dois</label>
+            <br>
+            <p>Opção Escolhida: {{selectedOption}}</p>
+
+            <select v-model="selectedCar">
+                <option v-for="car in cars" v-bind:value="car">
+                    {{car.name}} - {{car.brand}}
+                </option>
+            </select>
+            <p>Carro Escolhido: {{selectedCar.name}} - {{selectedCar.brand}}</p>
         </fieldset>
+        
         <fieldset>
             <legend></legend>
         </fieldset>
@@ -121,7 +145,10 @@
                     car: { name: "Ka", brand: "Ford", year: 2010, km: 60000 },
                     urlIgti: "https://online.igti.com.br/",
                     urlIgtiDescription: "Clique aqui para acessar o site do IGTI",
-                    argument: "title"
+                    argument: "title",
+                    checked: false,
+                    selectedOption: 0,
+                    selectedCar: {}
                 }
             },
             methods: {            
