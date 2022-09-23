@@ -45,6 +45,13 @@
             <p v-else>Valor inválido</p>
         </fieldset>
 
+        <fieldset>
+            <legend>v-show</legend>
+            <button v-show="!isUserLogged" @click="isUserLogged = true">Login</button>
+            <button v-show="isUserLogged" @click="isUserLogged = false">Logout</button>
+        </fieldset>
+        <!-- diferente do v-else, o v-show não tira o elemento do DOM. Mais adequado para situações em que o elemento vai sofrer muitas alterações -->
+
 
     </div>
     
@@ -58,7 +65,8 @@
                     lastName: "Lenon",
                     age: 30,
                     address: "",
-                    grade: 0
+                    grade: 0,
+                    isUserLogged: false
                 }
             },
             methods: {            
