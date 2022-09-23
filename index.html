@@ -13,7 +13,14 @@
             <div v-html="htmlContent"></div>
             <p>Nome: {{name}}</p> 
             <p>Idade: {{age}} anos</p>
-            <p>{{age > 18 ? 'Maior de idade' : 'É de menor!'}}</p> 
+            <p>{{age >= 18 ? 'Maior de idade' : 'É de menor!'}}</p> 
+        </fieldset>
+
+        <fieldset>
+            <legend>Methods</legend>
+            <button v-on:click="incrementAge">Incrementar idade</button> 
+            <button @click="decrementAge">Decrementar idade</button>
+            <!-- Tanto faz usar v-on:click ou @click --> 
         </fieldset>
     </div>
     
@@ -24,8 +31,17 @@
                 return {
                     htmlContent: "<p style='color: red; font-size: 20px'>Hello World, Vue.js!</p>",
                     name: "John",
-                    age: 15
+                    age: 30
                 }
+            },
+            methods: {            
+                incrementAge() {
+                    this.age++
+                },
+                decrementAge() {
+                    this.age--
+                },
+                /* Nesses métodos arrow functions devem ser evitadas, pois elas fazem o this perder a referência */
             }
         }
 
