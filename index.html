@@ -52,6 +52,39 @@
         </fieldset>
         <!-- diferente do v-else, o v-show não tira o elemento do DOM. Mais adequado para situações em que o elemento vai sofrer muitas alterações -->
 
+        <fieldset>
+            <legend>V-text</legend>
+            <p>{{firstName}}</p>
+            <p v-text="firstName"></p>
+        </fieldset>
+
+        <fieldset>
+            <legend>V-HTML</legend>
+            <div v-html="htmlContent"></div>
+        </fieldset>
+
+        <fieldset>
+            <legend>V-once</legend> <!-- Só avalia o componente uma vez -->
+            <p v-once>{{count}}</p> <!-- V-once não deixa esse valor aqui ser incrementado -->
+            <p>{{count}}</p>
+            <button @click="count++">Adicionar</button>
+        </fieldset>
+
+        <fieldset>
+            <legend></legend>
+        </fieldset>
+        <fieldset>
+            <legend></legend>
+        </fieldset>
+        <fieldset>
+            <legend></legend>
+        </fieldset>
+        <fieldset>
+            <legend></legend>
+        </fieldset>
+        <fieldset>
+            <legend></legend>
+        </fieldset>
 
     </div>
     
@@ -66,7 +99,8 @@
                     age: 30,
                     address: "",
                     grade: 0,
-                    isUserLogged: false
+                    isUserLogged: false,
+                    count: 1
                 }
             },
             methods: {            
