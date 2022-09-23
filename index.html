@@ -29,6 +29,12 @@
             <p>Nome completo: {{fullName}}</p>
         </fieldset>
 
+        <fieldset>
+            <legend>Watchers</legend>
+            <label for="input-address">Endereço:</label>
+            <input id="input-address" type="text" v-model="address">
+        </fieldset>
+
 
     </div>
     
@@ -40,7 +46,8 @@
                     htmlContent: "<p style='color: red; font-size: 20px'>Hello World, Vue.js!</p>",
                     firstName: "John",
                     lastName: "Lenon",
-                    age: 30
+                    age: 30,
+                    address: ""
                 }
             },
             methods: {            
@@ -55,6 +62,12 @@
             computed: { /* O computed armazena as chamadas em cash, diferente dos métodos. Os métodos são mais adequados para informações quem mudam frequentemente. */
                 fullName: function() {
                     return `${this.firstName} ${this.lastName}`
+                }
+            },
+            watch: {
+                address: function(newValue, oldValue) {
+                    console.log(newValue)
+                    console.log(oldValue)
                 }
             }
         }
