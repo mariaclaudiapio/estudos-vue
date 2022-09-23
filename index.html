@@ -35,6 +35,16 @@
             <input id="input-address" type="text" v-model="address">
         </fieldset>
 
+        <fieldset>
+            <legend>V-if</legend>
+            <label for="input-grade">Nota: </label>
+            <input id="input-grade" type="text" v-model="grade">
+            <p v-if="grade < 60">Reprovado</p>
+            <p v-else-if="grade >= 60 && grade < 98">Aprovado</p>
+            <p v-else-if="grade >= 60 && grade >= 98">Aprovado com excelência</p>
+            <p v-else>Valor inválido</p>
+        </fieldset>
+
 
     </div>
     
@@ -47,7 +57,8 @@
                     firstName: "John",
                     lastName: "Lenon",
                     age: 30,
-                    address: ""
+                    address: "",
+                    grade: 0
                 }
             },
             methods: {            
@@ -57,7 +68,7 @@
                 decrementAge() {
                     this.age--
                 }
-                /* Nesses métodos arrow functions devem ser evitadas, pois elas fazem o this perder a referência */
+                /* Nesses métodos, arrow functions devem ser evitadas, pois elas fazem o this perder a referência */
             },            
             computed: { /* O computed armazena as chamadas em cash, diferente dos métodos. Os métodos são mais adequados para informações quem mudam frequentemente. */
                 fullName: function() {
