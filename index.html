@@ -81,12 +81,16 @@
                 <li v-for="car in cars">{{car.name}} ({{car.brand}})</li>
             </ul>
             <h4>Carro</h4>
-            <p v-for="(value, key, index) in car">{{index}} - {{key}} - {{value}}</p>
-            
+            <p v-for="(value, key, index) in car">{{index}} - {{key}} - {{value}}</p>            
         </fieldset>
+
         <fieldset>
-            <legend></legend>
+            <legend>V-bind</legend>
+            <a v-bind:href="urlIgti">IGTI</a><br>
+            <a :href="urlIgti" :[argument]="urlIgtiDescription">IGTI</a>
         </fieldset>
+        <!-- o v-bind, nos dois exemplos, pode ser substituído pelos : -->
+
         <fieldset>
             <legend></legend>
         </fieldset>
@@ -114,7 +118,10 @@
                     count: 1,
                     carBrands: ["VW", "Fiat", "Renault", "Ford"],
                     cars: [{ name: "Ka", brand: "Ford" }, { name: "Palio", brand: "Fiat" }, { name: "Sandero", brand: "Renault" }],
-                    car: { name: "Ka", brand: "Ford", year: 2010, km: 60000 }
+                    car: { name: "Ka", brand: "Ford", year: 2010, km: 60000 },
+                    urlIgti: "https://online.igti.com.br/",
+                    urlIgtiDescription: "Clique aqui para acessar o site do IGTI",
+                    argument: "title"
                 }
             },
             methods: {            
