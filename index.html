@@ -71,7 +71,18 @@
         </fieldset>
 
         <fieldset>
-            <legend></legend>
+            <legend>V-for</legend>
+            <h4>Marcas</h4>
+            <ul>
+                <li v-for="brand in carBrands">{{brand}}</li>
+            </ul>
+            <h4>Carros</h4>
+            <ul>
+                <li v-for="car in cars">{{car.name}} ({{car.brand}})</li>
+            </ul>
+            <h4>Carro</h4>
+            <p v-for="(value, key, index) in car">{{index}} - {{key}} - {{value}}</p>
+            
         </fieldset>
         <fieldset>
             <legend></legend>
@@ -100,7 +111,10 @@
                     address: "",
                     grade: 0,
                     isUserLogged: false,
-                    count: 1
+                    count: 1,
+                    carBrands: ["VW", "Fiat", "Renault", "Ford"],
+                    cars: [{ name: "Ka", brand: "Ford" }, { name: "Palio", brand: "Fiat" }, { name: "Sandero", brand: "Renault" }],
+                    car: { name: "Ka", brand: "Ford", year: 2010, km: 60000 }
                 }
             },
             methods: {            
