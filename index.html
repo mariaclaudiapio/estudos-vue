@@ -5,6 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue.js</title>
+    <style>
+        [v-cloack] {
+            display: none
+        }
+    </style>
+
 </head>
 <body>
     <div id="hello-world">
@@ -62,7 +68,7 @@
             <legend>V-HTML</legend>
             <div v-html="htmlContent"></div>
         </fieldset>
-
+        
         <fieldset>
             <legend>V-once</legend> <!-- Só avalia o componente uma vez -->
             <p v-once>{{count}}</p> <!-- V-once não deixa esse valor aqui ser incrementado -->
@@ -117,13 +123,18 @@
             </select>
             <p>Carro Escolhido: {{selectedCar.name}} - {{selectedCar.brand}}</p>
         </fieldset>
-        
+
         <fieldset>
-            <legend></legend>
+            <legend>V-pre</legend> <!-- Marca um elemento para não ser compilado -->
+            <p>{{firstName}}</p>
+            <p v-pre>{{firstName}}</p>            
         </fieldset>
+
         <fieldset>
-            <legend></legend>
+            <legend>V-cloak</legend>
+            <p>{{firstName}}</p>
         </fieldset>
+
 
     </div>
     
