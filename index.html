@@ -9,6 +9,12 @@
         [v-cloack] {
             display: none
         }
+        .test-class-1 {
+            font-style: italic;
+        }
+        .test-class-2 {
+            color: blue;
+        }
     </style>
 
 </head>
@@ -135,6 +141,53 @@
             <p>{{firstName}}</p>
         </fieldset>
 
+        <fieldset>
+            <legend>Eventos</legend>
+            <div>
+                <button v-on:click="eventTest('click')">On Click</button>
+                <button v-on:click="eventTest">On Click Event Param Implicit</button>
+                <button @click="eventTestParam('@click', '$event')">On Click Event Param Explicit</button>
+                <button @dblclick="eventTest('dbl click')">On Double Click</button>
+                <button @click.left="eventMouseTest">Mouse Left</button>
+                <button @click.right.prevent="eventMouseTest">Mouse Right</button>
+                <button @click.middle="eventMouseTest">Mouse Middle</button>
+                <p @mouseenter="eventMouseTest" @mouseleave="eventMouseTest">Mouse Hover Test</p>               
+            </div>
+            <div>
+                <a :href="urlIgti" :[argument]="urlIgtiDescription" @click.prevent="showAlert('blocked')">IGTI</a>
+                <br/>
+                <a :href="urlIgti" :[argument]="urlIgtiDescription" @click.prevent.once="showAlert('blocked')">IGTI(once)</a>
+            </div>
+            <div>
+                <input @keyup.enter="eventKeyTest" placeholder="Press enter">
+                <input @keyup.delete="eventKeyTest" placeholder="Press delete">
+                <input @keyup.esc="eventKeyTest" placeholder="Press esc">
+                <input @keyup.space="eventKeyTest" placeholder="Press space">
+                <input @keyup.up="eventKeyTest" placeholder="Press up">
+                <input @keyup.down="eventKeyTest" placeholder="Press down">
+                <input @keyup.right="eventKeyTest" placeholder="Press right">
+                <input @keyup.left="eventKeyTest" placeholder="Press left">                
+                <input @keydown.ctrl="eventKeyTest" placeholder="Press ctrl">
+                <input @keydown.tab="eventKeyTest" placeholder="Press tab">
+                <input @keydown.shift="eventKeyTest" placeholder="Press shift">
+                <input @keydown.meta="eventKeyTest" placeholder="Press meta">
+            </div>
+            <p @click.ctrl="eventTest('ctrl + click')">Ctrl + Click</p>
+            <p @click.ctrl.exact="eventTest('ctrl + click(exact)')">Ctrl + Click Exact</p>
+            <p @click.ctrl="eventTest('ctrl + click')" @click.alt="eventTest('alt + click')">Ctrl + Click / Alt + Click</p>
+            <p @click.ctrl="eventTest('')"></p>
+        </fieldset>
+
+        <fieldset>
+            <legend>Estilos</legend>
+            <p v-bind:style="{ color: textColor }">Inline Syle Object</p>
+            <p v-bind:style="textColorObject">Inline Syle Object Bind</p>
+            <p class="test-class-1" v-bind:class="classTest2">Class Bind 1</p>
+            <p v-bind:class="classList">Class Bind List</p>
+            <p v-bind:class="[classTest1, classTest2]">Class List Inline</p>
+            <p v-bind:class="[1 > 2 ? classTest1: classTest2]">List Expression</p>
+        </fieldset>
+
 
     </div>
     
@@ -159,7 +212,15 @@
                     argument: "title",
                     checked: false,
                     selectedOption: 0,
-                    selectedCar: {}
+                    selectedCar: {},
+                    textColor: "red",
+                    textColorObject: {
+                        color: "green",
+                        fontSize: "25px"
+                    },
+                    classTest1: "test-class-1",
+                    classTest2: "test-class-2",
+                    classList: ["test-class-1", "test-class-2"]
                 }
             },
             methods: {            
@@ -168,13 +229,29 @@
                 },
                 decrementAge() {
                     this.age--
-                }
+                },
                 /* Nesses métodos, arrow functions devem ser evitadas, pois elas fazem o this perder a referência */
+                eventTest(name) {
+                    console.log(name)
+                },
+                eventTestParam(name, event) {
+                    console.log(name)
+                    console.log(event)
+                },
+                eventMouseTest(event) {
+                    console.log(event.type)
+                },
+                eventKeyTest(event) {
+                    console.log(event.key, event.type)
+                },
+                showAlert(msg) {
+                    alert(msg)
+                }
             },            
             computed: { /* O computed armazena as chamadas em cash, diferente dos métodos. Os métodos são mais adequados para informações quem mudam frequentemente. */
                 fullName: function() {
                     return `${this.firstName} ${this.lastName}`
-                }
+                },                
             },
             watch: {
                 address: function(newValue, oldValue) {
