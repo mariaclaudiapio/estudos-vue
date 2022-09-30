@@ -1,7 +1,8 @@
 <template>
   <div>
     <global-component></global-component>
-    <local-component v-bind:title="title"></local-component>
+    <local-component v-bind:title="title" @addclick="count += $event"></local-component>
+    <p>Count: {{ count }}</p>
   </div>
 </template>
 
@@ -12,7 +13,8 @@ import GlobalComponent from "./components/global-component.vue";
 export default {
   data() {
     return {
-      title: "Component Title"
+      title: "Component Title",
+      count: 0
     }
 
   },
