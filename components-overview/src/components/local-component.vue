@@ -5,6 +5,8 @@
         <!-- <button @click="$emit('addclick')">Add</button> -->
         <button @click="$emit('addclick', 1)">Add</button>
         <button @click="addTwo">Add Two</button>
+
+        <!-- <slot></slot> -->        
     </div>
 </template>
 
