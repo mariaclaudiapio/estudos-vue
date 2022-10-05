@@ -1,13 +1,33 @@
 <template>
-  <div></div>
+  <h1>Todo App</h1>
+  <div v-if="!editMode">
+    <Button v-on:click="newTodo">Novo</Button>
+    <todo-list></todo-list>
+  </div>
+  <todo-item v-if="editMode"></todo-item>
 </template>
 
 <script>
 
+import TodoList from "./components/TodoList.vue"
+import TodoItem from "./components/TodoItem.vue"
 
 export default {
-  
+  components: {
+    TodoList,
+    TodoItem
+  },
+  data() {
+    return {
+      editMode: false
+    }
+  },
+  methods: {
+    newTodo() {
+      this.editMode = true
+    }
   }
+}
 
 </script>
 
