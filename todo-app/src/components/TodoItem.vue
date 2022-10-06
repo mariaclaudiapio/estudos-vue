@@ -1,7 +1,9 @@
 <template>
     <InputText v-model="description" />
-    <Button @click="cancel">Voltar</Button>
-    <Button @click="saveTodo">Salvar</Button>
+    <div class="div-botoes">
+        <Button @click="cancel" class="btn-voltar">Voltar</Button>
+        <Button @click="saveTodo">Salvar</Button>
+    </div>
 </template>
 
 <script>
@@ -23,5 +25,11 @@ export default {
 </script>
 
 <style scoped>
+    .div-botoes {
+      margin-top: 1rem;  
+    }
 
+    .btn-voltar {
+        margin: 0 1rem;
+    }   
 </style>
