@@ -2,7 +2,7 @@
   <h1>Todo App</h1>
   <div v-if="!editMode">
     <Button v-on:click="newTodo">Novo</Button>
-    <todo-list v-bind:todos="todos"></todo-list>
+    <todo-list v-bind:todos="todos" @deleteTodo="deleteTodo"></todo-list>
   </div>
   <todo-item v-if="editMode" @cancel="cancel" @saveTodo="saveTodo"></todo-item>
 </template>
@@ -34,6 +34,10 @@ export default {
       this.todos.push(todo)
       localStorage.setItem("todos", JSON.stringify(this.todos))
       this.editMode = false
+    },
+    deleteTodo(index) {
+      this.todos.splice(index, 1)
+      localStorage.setItem("todos", JSON.stringify(this.todos))
     }
   },
   created() {
