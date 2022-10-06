@@ -4,7 +4,7 @@
     <Button v-on:click="newTodo">Novo</Button>
     <todo-list></todo-list>
   </div>
-  <todo-item v-if="editMode"></todo-item>
+  <todo-item v-if="editMode" @cancel="cancel" @saveTodo="saveTodo"></todo-item>
 </template>
 
 <script>
@@ -19,12 +19,20 @@ export default {
   },
   data() {
     return {
-      editMode: false
+      editMode: false,
+      todos: []
     }
   },
   methods: {
     newTodo() {
       this.editMode = true
+    },
+    cancel() {
+      this.editMode = false
+    },
+    saveTodo(todo) {
+      this.todos.push(todo)
+      localStorage.setItem("todos", JSON.stringify(this.todos))
     }
   }
 }
