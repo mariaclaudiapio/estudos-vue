@@ -1,0 +1,27 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <p v-once>{{ titulo }}</p> <!-- 'v-once' atualiza o elemento só uma vez -->
+    <p>{{ saudacao() }}</p>
+    <a v-bind:href="link">Google</a>
+    <hr>
+    <p>{{ linkHtml }}</p> <!-- aqui não há interpretação do HTML. Ele aparece 'puro' no html-->
+    <p v-html="linkHtml"></p> <!-- a diretiva 'v-html' interpreta o HTML, fazendo o link funcionar.-->
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            titulo: 'Usando VueJs!',
+            link: 'http://google.com.br',
+            linkHtml: '<a href="http://google.com">Google</a>'
+        },
+        methods: {
+            saudacao: function() {
+                this.titulo = 'Bom dia!!'
+                return this.titulo
+            }
+        }
+    })
+</script>
