@@ -32,6 +32,12 @@
         </fieldset>
 
         <fieldset>
+            <legend>watches</legend>
+            <label for="input-address">Endereço:</label>
+            <input id="input-address" type="text" v-model="address">
+        </fieldset>
+
+        <fieldset>
             <legend>template</legend>
         </fieldset>
     </div>
@@ -45,6 +51,7 @@
                     firstName: 'Helena',
                     lastName: 'Mollo',
                     age: 28,
+                    address: '',
                 }
             },
             methods: {
@@ -60,6 +67,12 @@
                 fullName: function() {
                     return `${this.firstName} ${this.lastName}` // o computed propery armazena informação em cache. Bom para dados que não mudam constantemente.
                 }
+            },
+            watch: {
+              address: function(newValue, oldValue) {
+                console.log(newValue)
+                console.log(oldValue)
+              }  
             }
         }
         
@@ -100,6 +113,15 @@
             color: blue;
             background-color: transparent;
             border:1px solid blue;
+        }
+
+        input {
+            margin: 0 1em;
+        }
+
+        input:hover {
+            border: transparent;
+            box-shadow: 0 1px 10px blue;            
         }
     </style>
 </body>
