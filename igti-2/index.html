@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.js</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="hello-world">
+        <fieldset>
+            <legend>template</legend>
+            <div v-html="htmlContent"></div>
+            <p>Primeiro Nome: {{ firstName }}</p>
+            <p>Último Nome: {{ lastName }}</p>
+            <p>Idade: {{ age }}</p>
+            <p>{{ firstName }} tem {{ age }} anos, sendo portanto, {{ age >= 18 ? 'maior de idade' : 'menor de idade'}}</p>
+        </fieldset>
+
+        <fieldset>
+            <legend>methods</legend>
+            <button v-on:click="incrementAge">Incrementar idade</button>
+            <button @click="decrementAge">Decrementar idade</button>
+        </fieldset>
+
+        <fieldset>
+            <legend>computed properties</legend>
+            <p>Nome completo: {{ fullName }}</p>
+        </fieldset>
+
+        <fieldset>
+            <legend>template</legend>
+        </fieldset>
+    </div>
+
+    <script src="https://unpkg.com/vue@3.0.4"></script>
+    <script>
+        const app = {
+            data() {
+                return {
+                    htmlContent: '<p class="green">Hello World Vue.js!</p>',
+                    firstName: 'Helena',
+                    lastName: 'Mollo',
+                    age: 28,
+                }
+            },
+            methods: {
+                incrementAge() {
+                    this.age++ 
+            
+                },
+                decrementAge() {
+                    this.age--
+                } 
+            },
+            computed: {
+                fullName: function() {
+                    return `${this.firstName} ${this.lastName}` // o computed propery armazena informação em cache. Bom para dados que não mudam constantemente.
+                }
+            }
+        }
+        
+
+        const vm = Vue.createApp(app).mount("#hello-world")
+    </script>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            color: blue;
+        }
+
+        legend {
+            font-weight: bold;
+            font-style: italic;
+            color: rgb(182, 3, 3);
+        }
+
+        .green {
+            color: green; 
+            font-size: 20px;
+        }
+
+        button {
+            font-family: 'Poppins';
+            font-weight: bold;
+            color: white;
+            background-color: blue;
+            padding: 0.7em;
+            border-radius: 10px;
+            margin: 0 1em;
+        }
+
+        button:hover,
+        button:active {
+            color: blue;
+            background-color: transparent;
+            border:1px solid blue;
+        }
+    </style>
+</body>
+</html>
